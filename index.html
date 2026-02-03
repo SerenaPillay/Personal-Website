@@ -1,276 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serena Pillay Education</title>
+  <meta charset="UTF-8" />
+  <title>Book Now</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <!-- BASIC STYLING -->
   <style>
-    :root {
-      --primary: #007BA7;
-      --secondary: #F6F6F6;
-      --accent: #FF6F61;
-      --text-dark: #2D2D2D;
-      --text-light: #FFFFFF;
-      --radius: 12px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--secondary);
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
-
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    nav a:hover { color: var(--accent); }
-
-    .hero {
-      min-height: 60vh;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 2rem;
+      height: 100vh;
+      margin: 0;
     }
 
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--primary);
-    }
-
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .course-card {
+    .box {
       background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .btn-book {
-      padding: 0.8rem 1.6rem;
-      background: var(--accent);
-      color: white;
-      font-weight: 700;
-      border-radius: var(--radius);
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-book:hover { background: var(--primary); }
-
-    /* MODAL */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .modal.active { display: flex; }
-
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: var(--radius);
-      width: 90%;
-      max-width: 500px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
       text-align: center;
     }
 
-    .modal-content img {
-      max-width: 200px;
-      margin: 1rem auto;
-      border-radius: var(--radius);
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
     }
 
     #paypal-button-container {
-      margin-top: 1.5rem;
-    }
-
-    .close {
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      cursor: pointer;
-    }
-
-    footer {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    @media (max-width: 768px) {
-      header { flex-direction: column; }
-      nav a { margin: 0.5rem; }
+      margin-top: 25px;
     }
   </style>
 
-  <!-- PAYPAL SDK (YOUR CLIENT ID ALREADY ADDED) -->
+  <!-- PAYPAL SDK (THIS IS CRITICAL) -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQD8n9bHCUvJuOqLRj_tKWMfONEqCvjvPmSQ2SfwJnNg6rhLjaFT321IherNrDAH5PaNcJfBDQ1f3Vvq&currency=USD"></script>
 </head>
 
 <body>
+  <div class="box">
+    <h1>Book Now</h1>
+    <p>Secure payment via PayPal</p>
 
-<header>
-  <h1>Serena Pillay Education</h1>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#courses">Courses</a>
-    <a href="#booking">Booking</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h2>Empowering Students to Excel</h2>
-  <p>IELTS, DSE & Academic English for confident communication</p>
-</section>
-
-<section id="about">
-  <h2 class="section-title">About</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    I specialise in IELTS and DSE preparation, academic speaking,
-    and communication skills for international success.
-  </p>
-</section>
-
-<section id="courses">
-  <h2 class="section-title">Courses</h2>
-  <div class="courses">
-    <div class="course-card">
-      <h3>IELTS & DSE Speaking</h3>
-      <p>Exam-focused speaking strategies and confidence building.</p>
-    </div>
-    <div class="course-card">
-      <h3>Academic English</h3>
-      <p>Writing, presentations, and classroom communication.</p>
-    </div>
-    <div class="course-card">
-      <h3>Technology Literacy</h3>
-      <p>Digital and information literacy for modern learners.</p>
-    </div>
-  </div>
-</section>
-
-<section id="booking">
-  <h2 class="section-title">Book a Class</h2>
-  <div style="text-align:center;">
-    <button class="btn-book" id="openModal">Book Now</button>
-  </div>
-</section>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3>Book & Pay</h3>
-    <p>Scan WeChat or pay securely with PayPal</p>
-
-    <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR">
-
-    <!-- PAYPAL BUTTON -->
+    <!-- PAYPAL BUTTON WILL APPEAR HERE -->
     <div id="paypal-button-container"></div>
-
-    <button class="close" id="closeModal">Close</button>
   </div>
-</div>
 
-<section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <p style="text-align:center;">Contact me via WeChat for bookings or questions.</p>
-</section>
+  <!-- PAYPAL BUTTON SCRIPT -->
+  <script>
+    paypal.Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '20.00' // CHANGE PRICE HERE
+            }
+          }]
+        });
+      },
 
-<footer>
-  <p>&copy; 2026 Serena Pillay Education</p>
-</footer>
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          alert('Payment completed by ' + details.payer.name.given_name);
+        });
+      },
 
-<script>
-  const modal = document.getElementById('modal');
-  const openBtn = document.getElementById('openModal');
-  const closeBtn = document.getElementById('closeModal');
-
-  let paypalLoaded = false;
-
-  openBtn.onclick = () => {
-    modal.classList.add('active');
-
-    if (!paypalLoaded) {
-      paypal.Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [{
-              amount: { value: '50.00' } // CHANGE PRICE HERE
-            }]
-          });
-        },
-        onApprove: (data, actions) => {
-          return actions.order.capture().then(details => {
-            alert('Payment completed by ' + details.payer.name.given_name);
-          });
-        }
-      }).render('#paypal-button-container');
-
-      paypalLoaded = true;
-    }
-  };
-
-  closeBtn.onclick = () => modal.classList.remove('active');
-
-  document.querySelectorAll('nav a').forEach(link => {
-    link.onclick = e => {
-      e.preventDefault();
-      document.querySelector(link.getAttribute('href'))
-        .scrollIntoView({ behavior: 'smooth' });
-    };
-  });
-</script>
-
+      onError: function (err) {
+        console.error(err);
+        alert('Something went wrong with PayPal.');
+      }
+    }).render('#paypal-button-container');
+  </script>
 </body>
 </html>
