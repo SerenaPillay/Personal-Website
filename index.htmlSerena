@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serena Pillay Education</title>
+
+  <style>
+    :root {
+      --primary: #007BA7;
+      --primary-light: #E6F3F8;
+      --accent: #F2C94C;
+      --text-dark: #333;
+      --bg-light: #F9FBFC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+    }
+
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* 3D Courses cards */
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .course-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transform: perspective(1000px) translateZ(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card h3 {
+      color: #005f82;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .course-card p {
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.6rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #005f82;
+    }
+
+    .contact-box {
+      text-align: center;
+    }
+
+    .contact-box img {
+      max-width: 200px;
+      margin-top: 1rem;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--primary-light);
+      font-size: 0.9rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 800px;
+      height: 80%;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 600px) {
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .course-card {
+        padding: 1.5rem;
+      }
+
+      .modal-content {
+        height: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Serena Pillay Education</h1>
+    <p>IELTS • DSE • Academic English • Technology Literacy</p>
+  </header>
+
+  <!-- ABOUT -->
+  <section>
+    <h2>About</h2>
+    <div class="card">
+      <p>
+        I specialise in supporting upper secondary students with <strong>IELTS and DSE preparation</strong>,
+        as well as academic speaking development and <strong>technology & IT literacy</strong>. 
+        My focus is on building confidence, clear communication, and the critical thinking skills 
+        needed to succeed in international academic environments.
+      </p>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section>
+    <h2>Courses & Learning Tracks</h2>
+    <div class="courses">
+
+      <div class="course-card">
+        <h3>IELTS & DSE Speaking (Grades 10–12)</h3>
+        <p>
+          Focused preparation for international examinations, helping students
+          structure ideas clearly, speak confidently, and perform well under exam conditions.
+        </p>
+      </div>
+
+      <div class="course-card">
+        <h3>Academic English & Communication</h3>
+        <p>
+          Designed for middle and high school students who need support with
+          academic writing, presentation skills, and classroom communication.
+        </p>
+      </div>
+
+      <div class="course-card">
+        <h3>Technology & Information Literacy</h3>
+        <p>
+          Lessons that develop digital literacy, responsible technology use,
+          and foundational computing skills for modern learning environments.
+        </p>
+      </div>
+
+    </div>
+
+    <a class="button" onclick="openModal()">Book a Class</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <h2>Contact (China)</h2>
+    <div class="card contact-box">
+      <p>Parents and students can contact me directly via WeChat.</p>
+      <p><strong>Scan the QR code below:</strong></p>
+      <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg"
+           alt="WeChat QR Code">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Serena Pillay Education • Online & China-based Instruction
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <iframe src="https://wj.qq.com/s2/25696131/"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("bookingModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("bookingModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
