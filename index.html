@@ -15,7 +15,7 @@
       --accent: #FF6F61;
       --text-dark: #2D2D2D;
       --text-light: #FFFFFF;
-      --border-radius: 12px;
+      --radius: 12px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,8 +41,8 @@
 
     nav a {
       margin-left: 1.5rem;
-      font-weight: 600;
       color: white;
+      font-weight: 600;
       text-decoration: none;
     }
 
@@ -82,7 +82,7 @@
     .course-card {
       background: white;
       padding: 2rem;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
@@ -91,13 +91,14 @@
       background: var(--accent);
       color: white;
       font-weight: 700;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
       border: none;
       cursor: pointer;
     }
 
     .btn-book:hover { background: var(--primary); }
 
+    /* MODAL */
     .modal {
       position: fixed;
       inset: 0;
@@ -113,7 +114,7 @@
     .modal-content {
       background: white;
       padding: 2rem;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
       width: 90%;
       max-width: 500px;
       text-align: center;
@@ -122,7 +123,7 @@
     .modal-content img {
       max-width: 200px;
       margin: 1rem auto;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
     }
 
     #paypal-button-container {
@@ -135,7 +136,7 @@
       background: var(--accent);
       color: white;
       border: none;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
       cursor: pointer;
     }
 
@@ -152,7 +153,7 @@
     }
   </style>
 
-  <!-- ✅ PAYPAL SDK (LIVE CLIENT ID ADDED) -->
+  <!-- PAYPAL SDK (YOUR CLIENT ID ALREADY ADDED) -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQD8n9bHCUvJuOqLRj_tKWMfONEqCvjvPmSQ2SfwJnNg6rhLjaFT321IherNrDAH5PaNcJfBDQ1f3Vvq&currency=USD"></script>
 </head>
 
@@ -212,7 +213,7 @@
     <h3>Book & Pay</h3>
     <p>Scan WeChat or pay securely with PayPal</p>
 
-    <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR Code">
+    <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR">
 
     <!-- PAYPAL BUTTON -->
     <div id="paypal-button-container"></div>
@@ -223,7 +224,7 @@
 
 <section id="contact">
   <h2 class="section-title">Contact</h2>
-  <p style="text-align:center;">Contact me via WeChat for questions or bookings.</p>
+  <p style="text-align:center;">Contact me via WeChat for bookings or questions.</p>
 </section>
 
 <footer>
@@ -232,8 +233,35 @@
 
 <script>
   const modal = document.getElementById('modal');
-  document.getElementById('openModal').onclick = () => modal.classList.add('active');
-  document.getElementById('closeModal').onclick = () => modal.classList.remove('active');
+  const openBtn = document.getElementById('openModal');
+  const closeBtn = document.getElementById('closeModal');
+
+  let paypalLoaded = false;
+
+  openBtn.onclick = () => {
+    modal.classList.add('active');
+
+    if (!paypalLoaded) {
+      paypal.Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: { value: '50.00' } // CHANGE PRICE HERE
+            }]
+          });
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(details => {
+            alert('Payment completed by ' + details.payer.name.given_name);
+          });
+        }
+      }).render('#paypal-button-container');
+
+      paypalLoaded = true;
+    }
+  };
+
+  closeBtn.onclick = () => modal.classList.remove('active');
 
   document.querySelectorAll('nav a').forEach(link => {
     link.onclick = e => {
@@ -242,21 +270,6 @@
         .scrollIntoView({ behavior: 'smooth' });
     };
   });
-
-  paypal.Buttons({
-    createOrder: (data, actions) => {
-      return actions.order.create({
-        purchase_units: [{
-          amount: { value: '50.00' } // 💰 CHANGE PRICE HERE
-        }]
-      });
-    },
-    onApprove: (data, actions) => {
-      return actions.order.capture().then(details => {
-        alert('Payment completed by ' + details.payer.name.given_name);
-      });
-    }
-  }).render('#paypal-button-container');
 </script>
 
 </body>
