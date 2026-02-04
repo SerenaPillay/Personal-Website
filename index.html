@@ -226,16 +226,28 @@
       <h3>Scan to Book via WeChat</h3>
       <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR Code">
 
-     <!-- PAYPAL BUTTON -->
+<!-- PAYPAL BUTTON -->
 <div class="payment-btn">
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick">
     <input type="hidden" name="hosted_button_id" value="AQD8n9bHCUvJuOqLRj_tKWMfONEqCvjvPmSQ2SfwJnNg6rhLjaFT321IherNrDAH5PaNcJfBDQ1f3Vvq">
-    <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" 
-           border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="border-radius:12px;">
-    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    <button type="submit" style="
+      background-color: #1acae5;
+      color: #0131bc;
+      font-weight: 700;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: 0.3s;
+    " onmouseover="this.style.backgroundColor='#0d8bc9'" onmouseout="this.style.backgroundColor='#1acae5'">
+      Pay Now with PayPal
+    </button>
   </form>
 </div>
+
 
   <!-- CONTACT -->
   <section id="contact" class="contact">
