@@ -1,82 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Book Now</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serena Pillay Education</title>
 
-  <!-- BASIC STYLING -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f6f6f6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-    }
+  <!-- LINK YOUR EXISTING CSS FILE -->
+  <link rel="stylesheet" href="style.css">
 
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #555;
-    }
-
-    #paypal-button-container {
-      margin-top: 25px;
-    }
-  </style>
-
-  <!-- PAYPAL SDK (THIS IS CRITICAL) -->
+  <!-- PAYPAL SDK (MUST BE IN <HEAD>) -->
   <script src="https://www.paypal.com/sdk/js?client-id=AQD8n9bHCUvJuOqLRj_tKWMfONEqCvjvPmSQ2SfwJnNg6rhLjaFT321IherNrDAH5PaNcJfBDQ1f3Vvq&currency=USD"></script>
 </head>
 
 <body>
-  <div class="box">
-    <h1>Book Now</h1>
-    <p>Secure payment via PayPal</p>
 
-    <!-- PAYPAL BUTTON WILL APPEAR HERE -->
-    <div id="paypal-button-container"></div>
+<!-- HEADER -->
+<header>
+  <h1>Serena Pillay Education</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#courses">Courses</a>
+    <a href="#booking">Booking</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <h2>Empowering Students to Excel</h2>
+  <p>Helping students build confidence, communication skills, and academic success.</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2 class="section-title">About</h2>
+  <p>
+    I specialise in supporting upper secondary students with <strong>IELTS and DSE preparation</strong>,
+    focusing on confidence, clear communication, and critical thinking.
+  </p>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <h2 class="section-title">Courses & Learning Tracks</h2>
+  <div class="courses">
+    <div class="course-card">
+      <h3>IELTS & DSE Speaking</h3>
+      <p>Exam-focused speaking strategies.</p>
+    </div>
+    <div class="course-card">
+      <h3>Academic English</h3>
+      <p>Writing, presentations, and classroom communication.</p>
+    </div>
+    <div class="course-card">
+      <h3>Technology Literacy</h3>
+      <p>Digital and information literacy skills.</p>
+    </div>
   </div>
+</section>
 
-  <!-- PAYPAL BUTTON SCRIPT -->
-  <script>
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '20.00' // CHANGE PRICE HERE
-            }
-          }]
-        });
-      },
+<!-- BOOKING -->
+<section id="booking" class="booking">
+  <h2 class="section-title">Book a Class</h2>
+  <div style="text-align:center;">
+    <button class="btn-book" id="openModal">Book Now</button>
+  </div>
+</section>
 
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          alert('Payment completed by ' + details.payer.name.given_name);
-        });
-      },
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Book Your Class</h3>
 
-      onError: function (err) {
-        console.error(err);
-        alert('Something went wrong with PayPal.');
-      }
-    }).render('#paypal-button-container');
-  </script>
+    <p>WeChat booking:</p>
+    <img
+      src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg"
+      alt="WeChat QR Code"
+    >
+
+    <p style="margin-top:1rem;">Or pay securely with PayPal:</p>
+
+    <!-- PAYPAL BUTTON -->
+    <div id="paypal-button-container"></div>
+
+    <button class="close" id="closeModal">Close</button>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2 class="section-title">Contact</h2>
+  <p>Scan the QR code or use PayPal to book.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Serena Pillay Education</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  const modal = document.getElementById("modal");
+  document.getElementById("openModal").onclick = () => modal.classList.add("active");
+  document.getElementById("closeModal").onclick = () => modal.classList.remove("active");
+
+  paypal.Buttons({
+    createOrder: (data, actions) => {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: "20.00" }
+        }]
+      });
+    },
+    onApprove: (data, actions) => {
+      return actions.order.capture().then(details => {
+        alert("Payment completed by " + details.payer.name.given_name);
+      });
+    }
+  }).render("#paypal-button-container");
+</script>
+
 </body>
 </html>
