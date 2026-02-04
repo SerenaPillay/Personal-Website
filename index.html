@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Serena Pillay Education</title>
-  <!-- Google Fonts: Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- PAYPAL SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AQD8n9bHCUvJuOqLRj_tKWMfONEqCvjvPmSQ2SfwJnNg6rhLjaFT321IherNrDAH5PaNcJfBDQ1f3Vvq&currency=USD"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ====== VARIABLES ====== */
@@ -146,8 +144,11 @@
     }
     .modal-content button.close:hover { background: var(--primary); }
 
-    /* ====== PAYPAL BUTTON ====== */
-    #paypal-button-container { margin-top: 1rem; }
+    /* ====== PAYMENT BUTTON ====== */
+    .payment-btn {
+      display: inline-block;
+      margin-top: 1rem;
+    }
 
     /* ====== CONTACT ====== */
     .contact { text-align: center; }
@@ -224,11 +225,19 @@
   <!-- MODAL -->
   <div class="modal" id="modal">
     <div class="modal-content">
-      <h3>Book via WeChat or PayPal</h3>
+      <h3>Scan to Book via WeChat</h3>
       <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR Code">
       
-      <!-- PAYPAL BUTTON -->
-      <div id="paypal-button-container"></div>
+      <!-- PAYPAL BUTTON EXAMPLE -->
+      <div class="payment-btn">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" 
+                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+      </div>
 
       <button class="close" id="closeModal">Close</button>
     </div>
@@ -247,7 +256,6 @@
 
   <!-- SCRIPTS -->
   <script>
-    // MODAL OPEN/CLOSE
     const openBtn = document.getElementById('openModal');
     const closeBtn = document.getElementById('closeModal');
     const modal = document.getElementById('modal');
@@ -255,33 +263,13 @@
     openBtn.addEventListener('click', () => modal.classList.add('active'));
     closeBtn.addEventListener('click', () => modal.classList.remove('active'));
 
-    // Smooth scroll for nav links
+    // Smooth scroll
     document.querySelectorAll('nav a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
     });
-
-    // PAYPAL BUTTON
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: { value: '20.00' } // CHANGE PRICE HERE
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          alert('Payment completed by ' + details.payer.name.given_name);
-        });
-      },
-      onError: function (err) {
-        console.error(err);
-        alert('Something went wrong with PayPal.');
-      }
-    }).render('#paypal-button-container');
   </script>
 
 </body>
