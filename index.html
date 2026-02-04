@@ -11,10 +11,10 @@
   <style>
     /* ====== VARIABLES ====== */
     :root {
-      --primary: #007BA7; /* Cerulean Blue */
-      --secondary: #F6F6F6; /* Light background */
-      --accent: #FF6F61; /* Warm coral for buttons */
-      --text-dark: #2D2D2D; /* Dark text */
+      --primary: #0131bc;  /* Dark Blue */
+      --secondary: #e3f4fa; /* Light Background */
+      --accent: #18c8e5;  /* Bright Cyan */
+      --text-dark: #0547a6; /* Darker Blue for text */
       --text-light: #FFFFFF;
       --border-radius: 12px;
       --transition: 0.3s ease;
@@ -50,7 +50,6 @@
     .hero {
       min-height: 60vh;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: var(--text-light);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -58,8 +57,8 @@
       text-align: center;
       padding: 2rem;
     }
-    .hero h2 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; }
-    .hero p { font-size: 1.2rem; max-width: 600px; }
+    .hero h2 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); }
+    .hero p { font-size: 1.2rem; max-width: 600px; color: var(--text-dark); }
 
     /* ====== SECTIONS ====== */
     section { padding: 4rem 2rem; max-width: 1100px; margin: auto; }
@@ -130,19 +129,7 @@
       text-align: center;
     }
     .modal-content h3 { margin-bottom: 1rem; color: var(--primary); font-weight: 600; }
-    .modal-content img { max-width: 200px; margin-bottom: 1rem; border-radius: var(--border-radius); }
-    .modal-content button.close {
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: var(--accent);
-      border: none;
-      color: var(--text-light);
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      font-weight: 700;
-      transition: all var(--transition);
-    }
-    .modal-content button.close:hover { background: var(--primary); }
+    .modal-content img { max-width: 200px; margin: 1rem auto; display: block; border-radius: var(--border-radius); }
 
     /* ====== PAYMENT BUTTON ====== */
     .payment-btn {
@@ -161,7 +148,8 @@
     @media (max-width: 768px) {
       header { flex-direction: column; text-align: center; }
       nav a { margin: 0.5rem; display: inline-block; }
-      .hero h2 { font-size: 2rem; }
+      .hero h2 { font-size: 2.8rem; } /* keep original size */
+      .hero p { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -228,7 +216,7 @@
       <h3>Scan to Book via WeChat</h3>
       <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR Code">
       
-      <!-- PAYPAL BUTTON EXAMPLE -->
+      <!-- PAYPAL BUTTON -->
       <div class="payment-btn">
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick">
