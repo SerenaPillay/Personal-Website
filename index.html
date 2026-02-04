@@ -11,10 +11,10 @@
   <style>
     /* ====== VARIABLES ====== */
     :root {
-      --primary: #0131bc;   /* Dark blue */
-      --secondary: #e3f4fa; /* Light background */
-      --accent: #18c8e5;    /* Bright cyan for buttons */
-      --text-dark: #0547a6; /* Dark text */
+      --primary: #007BA7; /* Cerulean Blue */
+      --secondary: #F6F6F6; /* Light background */
+      --accent: #FF6F61; /* Warm coral for buttons */
+      --text-dark: #2D2D2D; /* Dark text */
       --text-light: #FFFFFF;
       --border-radius: 12px;
       --transition: 0.3s ease;
@@ -49,8 +49,8 @@
     /* ====== HERO ====== */
     .hero {
       min-height: 60vh;
-      background: linear-gradient(135deg, #0131bc, #18c8e5);
-      color: var(--text-dark); /* darker text */
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: var(--text-light);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -130,8 +130,7 @@
       text-align: center;
     }
     .modal-content h3 { margin-bottom: 1rem; color: var(--primary); font-weight: 600; }
-    .modal-content img { max-width: 200px; margin-bottom: 1rem; border-radius: var(--border-radius); display: block; margin-left: auto; margin-right: auto; }
-
+    .modal-content img { max-width: 200px; margin-bottom: 1rem; border-radius: var(--border-radius); }
     .modal-content button.close {
       margin-top: 1rem;
       padding: 0.6rem 1.2rem;
@@ -146,7 +145,10 @@
     .modal-content button.close:hover { background: var(--primary); }
 
     /* ====== PAYMENT BUTTON ====== */
-    .payment-btn { display: block; margin: 1rem auto; }
+    .payment-btn {
+      display: inline-block;
+      margin-top: 1rem;
+    }
 
     /* ====== CONTACT ====== */
     .contact { text-align: center; }
@@ -159,7 +161,7 @@
     @media (max-width: 768px) {
       header { flex-direction: column; text-align: center; }
       nav a { margin: 0.5rem; display: inline-block; }
-      .hero h2 { font-size: 2.8rem; }
+      .hero h2 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -225,29 +227,21 @@
     <div class="modal-content">
       <h3>Scan to Book via WeChat</h3>
       <img src="https://raw.githubusercontent.com/SerenaPillay/Personal-Website/e95e7863eb1d12b832d979259b3d6ae2e7ab0653/WeChatQrCode.jpg" alt="WeChat QR Code">
+      
+      <!-- PAYPAL BUTTON EXAMPLE -->
+      <div class="payment-btn">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID">
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" 
+                 border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+      </div>
 
-<!-- PAYPAL BUTTON -->
-<div class="payment-btn">
-  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="AQD8n9bHCUvJuOqLRj_tKWMfONEqCvjvPmSQ2SfwJnNg6rhLjaFT321IherNrDAH5PaNcJfBDQ1f3Vvq">
-    <button type="submit" style="
-      background-color: #1acae5;
-      color: #0131bc;
-      font-weight: 700;
-      padding: 0.8rem 1.6rem;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      transition: 0.3s;
-    " onmouseover="this.style.backgroundColor='#0d8bc9'" onmouseout="this.style.backgroundColor='#1acae5'">
-      Pay Now with PayPal
-    </button>
-  </form>
-</div>
-
+      <button class="close" id="closeModal">Close</button>
+    </div>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact" class="contact">
